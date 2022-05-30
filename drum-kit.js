@@ -4,13 +4,30 @@ const drumDiv = document.querySelector('.keys');
 
 
 drumDiv.addEventListener('click', (e) => {
-    e.target.classList.toggle('playing');
+    const drum = e.target;
+    
+    drum.classList.toggle('playing');
+    
+    const timeoutID = setTimeout(() => {
+        drum.classList.toggle('playing');
+        
+        clearStyle(timeoutID);
+    }, 1000);
+    
+    
     
     //element.play();
     //element.pause();
 });
 
 
+
+
+
+
+function clearStyle(timerID) {
+     clearTimeout(timerID);
+} 
 
 
 
