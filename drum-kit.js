@@ -6,13 +6,14 @@ const drumDiv = document.querySelector('.keys');
 drumDiv.addEventListener('click', (e) => {
     const drum = e.target;
     
-    drum.classList.toggle('playing');
-    
-    const timeoutID = setTimeout(() => {
-        drum.classList.toggle('playing');
-        
-        clearStyle(timeoutID);
-    }, 1000);
+    playDrum(drum);
+//     drum.classList.toggle('playing');
+//     
+//     const timeoutID = setTimeout(() => {
+//         drum.classList.toggle('playing');
+//         
+//         clearStyle(timeoutID);
+//     }, 500);
     
     
     
@@ -22,12 +23,29 @@ drumDiv.addEventListener('click', (e) => {
 
 
 
-
+drumDiv.addEventListener('keydown', (e) => {
+    const drum = e.target;
+    
+    playDrum(drum);
+    
+    //element.play();
+    //element.pause();
+});
 
 
 function clearStyle(timerID) {
      clearTimeout(timerID);
 } 
+
+const playDrum = (drum) => {
+    drum.classList.toggle('playing');
+    
+    const timeoutID = setTimeout(() => {
+        drum.classList.toggle('playing');
+        
+        clearStyle(timeoutID);
+    }, 500);
+};
 
 
 
