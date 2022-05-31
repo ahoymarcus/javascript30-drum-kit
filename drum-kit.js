@@ -4,32 +4,36 @@ const drumDiv = document.querySelector('.keys');
 
 
 drumDiv.addEventListener('click', (e) => {
-    const drum = e.target;
+    // The 'click' event object does not have
+	// the matching keyCode to the audio.
+	console.log(e);
+
+	const drumKey = e.target;
+	console.log(drumKey);
+	
+	// Retrieve the matching data-key direct from
+	// the node.
+	const drumKeyDatasetKey = drumKey.dataset.key;
+	console.log(drumKeyDatasetKey);
+	
+	highlightDrum(drumKey);
     
-    playDrum(drum);
-//     drum.classList.toggle('playing');
-//     
-//     const timeoutID = setTimeout(() => {
-//         drum.classList.toggle('playing');
-//         
-//         clearStyle(timeoutID);
-//     }, 500);
-    
-    
-    
-    //element.play();
-    //element.pause();
+
 });
 
 
 
 drumDiv.addEventListener('keydown', (e) => {
-    const drum = e.target;
+    // The 'keydown' event object has many 
+	// properties, including keyCode.
+	console.log(e);
+	
+	const drumKey = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+	console.log(drumKey);
+	
+	highlightDrum(drumKey);
     
-    playDrum(drum);
     
-    //element.play();
-    //element.pause();
 });
 
 
@@ -37,11 +41,11 @@ function clearStyle(timerID) {
      clearTimeout(timerID);
 } 
 
-const playDrum = (drum) => {
-    drum.classList.toggle('playing');
+const highlightDrum = (drumKey) => {
+    drumKey.classList.toggle('playing');
     
     const timeoutID = setTimeout(() => {
-        drum.classList.toggle('playing');
+        drumKey.classList.toggle('playing');
         
         clearStyle(timeoutID);
     }, 500);
