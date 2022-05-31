@@ -18,7 +18,15 @@ drumDiv.addEventListener('click', (e) => {
 	
 	highlightDrum(drumKey);
     
-
+    const audio = document.querySelector(`audio[data-key="${drumKeyDatasetKey}"]`);
+	console.log(audio);
+	
+	// Event does not match a valid audio sound
+	if (audio) {
+		playDrum(audio);
+	} else { 
+		return 
+	};
 });
 
 
@@ -33,7 +41,15 @@ drumDiv.addEventListener('keydown', (e) => {
 	
 	highlightDrum(drumKey);
     
-    
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+	console.log(audio);
+	
+	// Event does not match a valid audio sound
+	if (audio) {
+		playDrum(audio);
+	} else {
+		return;
+	}
 });
 
 
@@ -51,5 +67,11 @@ const highlightDrum = (drumKey) => {
     }, 500);
 };
 
+
+const playDrum = (audio) => {
+	// Allow media to be continously recalled
+	audio.currentTime = 0;
+	audio.play();
+};
 
 
