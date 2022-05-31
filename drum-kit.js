@@ -30,8 +30,7 @@ drumDiv.addEventListener('click', (e) => {
 });
 
 
-
-drumDiv.addEventListener('keydown', (e) => {
+window.addEventListener('keydown', (e) => {
     // The 'keydown' event object has many 
 	// properties, including keyCode.
 	console.log(e);
@@ -64,7 +63,7 @@ const highlightDrum = (drumKey) => {
         drumKey.classList.toggle('playing');
         
         clearStyle(timeoutID);
-    }, 500);
+    }, 700);
 };
 
 
