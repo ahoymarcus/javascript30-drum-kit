@@ -28,6 +28,7 @@ const playDrum = (audio) => {
 
 
 /* LISTENERS */
+/*
 drumDiv.addEventListener('click', (e) => {
     // The 'click' event object does not have
 	// the matching keyCode to the audio.
@@ -52,7 +53,7 @@ drumDiv.addEventListener('click', (e) => {
 	} else { 
 		return 
 	}
-});
+});*/
 
 
 window.addEventListener('keydown', (e) => {
@@ -77,5 +78,26 @@ window.addEventListener('keydown', (e) => {
 });
 
 
+function clickEvent(e) {
+    e.stopPropagation();
+    
+    highlightDrum(e.target);
+    
+    const audio = document.querySelector(`audio[data-key="${drumKeyDatasetKey}"]`);
+	console.log(audio);
+	
+	// Event does not match a valid audio sound
+	if (audio) {
+		playDrum(audio);
+	} else { 
+		return 
+	}
+};
+
+drumDiv.addEventListener('click', clickEvent, true);
+
+kbds.addEventListener('click', clickEvent, true);
+
+spans.addEventListener('click', clickEvent, true);
 
 
